@@ -14,9 +14,9 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
   @IBOutlet weak var table: UITableView!
   var businesses: [Business]!
   var filtered: [Business]!
-  var search: UISearchBar!
   var isMoreDataLoading = false
   var offset: Int = 0
+  var s: UISearchController!
   
   override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +25,27 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
         table.dataSource = self
         table.rowHeight = UITableViewAutomaticDimension
         table.estimatedRowHeight = 120
-      
-        search = UISearchBar()
-        search.sizeToFit()
-        nav.titleView = search
-      
-    Business.searchWithTerm(term: "Chinese", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
+    
+        self.s = UISearchController(searchResultsController: nil)
+        self.s.searchResultsUpdater = self
+        self.s.searchBar.delegate = self
+    
+        self.s.hidesNavigationBarDuringPresentation = false
+        self.s.dimsBackgroundDuringPresentation = false
+    
+        s.searchBar.sizeToFit()
+    
+        nav.titleView = s.searchBar
+    
+    Business.searchWithTerm(term: "Thai", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
+            self.filtered = businesses
           self.table.reloadData()
             if let businesses = businesses {
-                for business in businesses {
+                /*for business in businesses {
                     print(business.name!)
                     print(business.address!)
-                }
+                }*/
             }
             
             }
@@ -70,9 +78,31 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
      }
      */
   
+  public func updateSearchResults(for searchController: UISearchController) {
+    if let searched = searchController.searchBar.text {
+      if searched.isEmpty {
+        filtered = businesses
+        
+      }
+      else
+      {
+        filtered = businesses!.filter({(dataItem: Business) -> Bool in
+          let title = dataItem.name!
+          if title.range(of: searched, options: .caseInsensitive) != nil {
+            return true
+          }
+          else {
+            return false
+          }
+        })
+      }
+      table.reloadData()
+    }
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if businesses != nil {
-      return businesses.count
+    if filtered != nil {
+      return filtered.count
     }else {
       return 0
     }
@@ -81,24 +111,20 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = table.dequeueReusableCell(withIdentifier: "busCell", for: indexPath) as! BusinessViewCell
     
-    cell.restaurant = businesses[indexPath.row]
+    //cell.restaurant = businesses[indexPath.row]
+    cell.restaurant = filtered[indexPath.row]
     return cell
-  }
-  
-  @available(iOS 8.0, *)
-  public func updateSearchResults(for searchController: UISearchController) {
-    //
   }
   
   func loadMoreData() {
     offset += 5
     
-    Business.searchWithTerm(term: "Chinese", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
+    Business.searchWithTerm(term: "Thai", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
       
       //self.businesses = businesses
       self.isMoreDataLoading = false
       self.businesses.append(contentsOf: businesses!)
-      self.filtered = businesses
+      self.filtered.append(contentsOf: businesses!)
       
       self.table.reloadData()
     }
@@ -120,5 +146,16 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
         loadMoreData()
       }
     }
+  }
+  
+  
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let cell = sender as! BusinessViewCell
+    let indexPath = table.indexPath(for: cell)
+    //let business = filtered![indexPath!.item]
+    
+    let dViewController = segue.destination as! DetailsViewController
+    
   }
 }

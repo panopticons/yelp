@@ -39,7 +39,7 @@
                                                         <constraint firstAttribute="width" constant="90" id="1Jd-b5-zQx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Restaurant name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVK-Qw-9Ns">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="Restaurant name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVK-Qw-9Ns">
                                                     <rect key="frame" x="110" y="8" width="142" height="20"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -72,7 +72,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="miles" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwk-Cs-lNe">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="miles" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwk-Cs-lNe">
                                                     <rect key="frame" x="267" y="10" width="67" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="fKV-Fd-ylN"/>
@@ -86,8 +86,14 @@
                                             <constraints>
                                                 <constraint firstItem="kwk-Cs-lNe" firstAttribute="centerY" secondItem="gVK-Qw-9Ns" secondAttribute="centerY" id="2KF-fZ-5RB"/>
                                                 <constraint firstItem="LK7-go-F48" firstAttribute="top" secondItem="gVK-Qw-9Ns" secondAttribute="bottom" constant="7" id="3aD-ls-qNS"/>
+                                                <constraint firstItem="kwk-Cs-lNe" firstAttribute="trailing" secondItem="izM-xS-k0q" secondAttribute="trailingMargin" id="4Or-cU-BjP"/>
+                                                <constraint firstItem="80R-3L-XUO" firstAttribute="top" secondItem="izM-xS-k0q" secondAttribute="topMargin" constant="2" id="4cH-VY-6xN"/>
                                                 <constraint firstItem="80R-3L-XUO" firstAttribute="leading" secondItem="izM-xS-k0q" secondAttribute="leadingMargin" constant="2" id="6bY-f8-hDJ"/>
+                                                <constraint firstItem="kwk-Cs-lNe" firstAttribute="top" secondItem="izM-xS-k0q" secondAttribute="topMargin" constant="2" id="7hy-Jz-1CI"/>
+                                                <constraint firstItem="kwk-Cs-lNe" firstAttribute="trailing" secondItem="izM-xS-k0q" secondAttribute="trailingMargin" id="BB4-Me-d3U"/>
                                                 <constraint firstItem="LK7-go-F48" firstAttribute="centerY" secondItem="Tah-wv-H49" secondAttribute="centerY" id="Dua-1s-6Pm"/>
+                                                <constraint firstItem="kwk-Cs-lNe" firstAttribute="top" secondItem="izM-xS-k0q" secondAttribute="topMargin" constant="2" id="KYh-TX-mpX"/>
+                                                <constraint firstItem="80R-3L-XUO" firstAttribute="leading" secondItem="izM-xS-k0q" secondAttribute="leadingMargin" constant="2" id="LGc-H1-3OS"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="80R-3L-XUO" secondAttribute="bottom" constant="5.5" id="LIp-1l-n2l"/>
                                                 <constraint firstItem="kwk-Cs-lNe" firstAttribute="leading" secondItem="gVK-Qw-9Ns" secondAttribute="trailing" constant="15" id="MLg-LH-pQu"/>
                                                 <constraint firstItem="kwk-Cs-lNe" firstAttribute="top" secondItem="80R-3L-XUO" secondAttribute="top" id="OIW-1W-dva"/>
