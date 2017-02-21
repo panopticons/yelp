@@ -26,11 +26,11 @@
                                 <rect key="frame" x="0.0" y="9" width="375" height="658"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="busCell" rowHeight="115" id="5eR-4e-VkE" customClass="BusinessViewCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="busCell" rowHeight="115" id="5eR-4e-VkE" customClass="BusinessViewCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5eR-4e-VkE" id="izM-xS-k0q">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80R-3L-XUO">
@@ -40,13 +40,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Restaurant name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVK-Qw-9Ns">
-                                                    <rect key="frame" x="110" y="8" width="175" height="20"/>
+                                                    <rect key="frame" x="110" y="8" width="142" height="20"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjI-Vi-FAE">
-                                                    <rect key="frame" x="110" y="63" width="214" height="15"/>
+                                                    <rect key="frame" x="110" y="63" width="181" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="aGU-JG-caz"/>
                                                     </constraints>
@@ -55,7 +55,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6w-Sn-8KA">
-                                                    <rect key="frame" x="110" y="85" width="214" height="16"/>
+                                                    <rect key="frame" x="110" y="85" width="181" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="miles" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwk-Cs-lNe">
-                                                    <rect key="frame" x="300" y="10" width="67" height="15"/>
+                                                    <rect key="frame" x="267" y="10" width="67" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="fKV-Fd-ylN"/>
                                                         <constraint firstAttribute="width" constant="67" id="l9G-GU-JOU"/>
@@ -115,12 +115,12 @@
                                             <outlet property="resFType" destination="k6w-Sn-8KA" id="a4A-T8-Ik3"/>
                                             <outlet property="resName" destination="gVK-Qw-9Ns" id="LiX-ni-9bF"/>
                                             <outlet property="revNum" destination="Tah-wv-H49" id="J6d-p8-fTK"/>
+                                            <segue destination="F2m-pn-OTq" kind="push" id="4ek-c9-ecS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gag-5e-UHf" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="topMargin" constant="9" id="6nS-gL-8UA"/>
                             <constraint firstItem="gag-5e-UHf" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="LyU-0N-Sg4"/>
@@ -133,12 +133,32 @@
                     </view>
                     <navigationItem key="navigationItem" id="o1h-89-qAM"/>
                     <connections>
+                        <outlet property="nav" destination="o1h-89-qAM" id="Q7l-11-PgT"/>
                         <outlet property="table" destination="gag-5e-UHf" id="e4U-MS-8sK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2727.1999999999998" y="357.57121439280365"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="b1u-J2-DdA">
+            <objects>
+                <viewController id="F2m-pn-OTq" customClass="DetailsViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lmP-on-FhH"/>
+                        <viewControllerLayoutGuide type="bottom" id="YFt-DB-qT9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2WB-tg-Dg8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PHD-Ug-rzm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9wu-HD-Z8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3495" y="332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4xT-pj-daP">

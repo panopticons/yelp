@@ -8,20 +8,29 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class BusinessesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate, UISearchResultsUpdating {
+  
+  @IBOutlet weak var nav: UINavigationItem!
   @IBOutlet weak var table: UITableView!
   var businesses: [Business]!
+  var filtered: [Business]!
+  var search: UISearchBar!
+  var isMoreDataLoading = false
+  var offset: Int = 0
   
-    override func viewDidLoad() {
+  override func viewDidLoad() {
         super.viewDidLoad()
-      
+    
         table.delegate = self
         table.dataSource = self
         table.rowHeight = UITableViewAutomaticDimension
         table.estimatedRowHeight = 120
       
-        Business.searchWithTerm(term: "Salvadoran", completion: { (businesses: [Business]?, error: Error?) -> Void in
+        search = UISearchBar()
+        search.sizeToFit()
+        nav.titleView = search
+      
+    Business.searchWithTerm(term: "Chinese", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
           self.table.reloadData()
             if let businesses = businesses {
@@ -74,5 +83,42 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     cell.restaurant = businesses[indexPath.row]
     return cell
+  }
+  
+  @available(iOS 8.0, *)
+  public func updateSearchResults(for searchController: UISearchController) {
+    //
+  }
+  
+  func loadMoreData() {
+    offset += 5
+    
+    Business.searchWithTerm(term: "Chinese", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
+      
+      //self.businesses = businesses
+      self.isMoreDataLoading = false
+      self.businesses.append(contentsOf: businesses!)
+      self.filtered = businesses
+      
+      self.table.reloadData()
+    }
+    )
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if (!isMoreDataLoading) {
+      // Calculate the position of one screen length before the bottom of the results
+      let scrollViewContentHeight = table.contentSize.height
+      let scrollOffsetThreshold = scrollViewContentHeight - table.bounds.size.height
+      
+      // When the user has scrolled past the threshold, start requesting
+      if(scrollView.contentOffset.y > scrollOffsetThreshold && table.isDragging) {
+        
+        isMoreDataLoading = true
+        
+        // Code to load more results
+        loadMoreData()
+      }
+    }
   }
 }
