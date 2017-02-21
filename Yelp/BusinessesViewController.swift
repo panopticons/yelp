@@ -82,7 +82,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
     if let searched = searchController.searchBar.text {
       if searched.isEmpty {
         filtered = businesses
-        
       }
       else
       {
@@ -122,7 +121,7 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
 
       self.isMoreDataLoading = false
       self.businesses.append(contentsOf: businesses!)
-      self.filtered.append(contentsOf: businesses!)
+      //self.filtered.append(contentsOf: businesses!)
       
       self.table.reloadData()
     }
@@ -131,16 +130,15 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if (!isMoreDataLoading) {
-      // Calculate the position of one screen length before the bottom of the results
+      
       let scrollViewContentHeight = table.contentSize.height
       let scrollOffsetThreshold = scrollViewContentHeight - table.bounds.size.height
       
-      // When the user has scrolled past the threshold, start requesting
+      
       if(scrollView.contentOffset.y > scrollOffsetThreshold && table.isDragging) {
         
         isMoreDataLoading = true
         
-        // Code to load more results
         loadMoreData()
       }
     }
