@@ -37,7 +37,7 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
     
         nav.titleView = s.searchBar
     
-    Business.searchWithTerm(term: "Thai", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
+    Business.searchWithTerm(term: "", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
             self.filtered = businesses
           self.table.reloadData()
@@ -111,7 +111,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = table.dequeueReusableCell(withIdentifier: "busCell", for: indexPath) as! BusinessViewCell
     
-    //cell.restaurant = businesses[indexPath.row]
     cell.restaurant = filtered[indexPath.row]
     return cell
   }
@@ -119,9 +118,8 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
   func loadMoreData() {
     offset += 5
     
-    Business.searchWithTerm(term: "Thai", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
-      
-      //self.businesses = businesses
+    Business.searchWithTerm(term: "", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
+
       self.isMoreDataLoading = false
       self.businesses.append(contentsOf: businesses!)
       self.filtered.append(contentsOf: businesses!)
@@ -147,8 +145,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
       }
     }
   }
-  
-  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let cell = sender as! BusinessViewCell
