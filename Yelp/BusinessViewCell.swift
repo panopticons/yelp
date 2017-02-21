@@ -18,8 +18,11 @@ class BusinessViewCell: UITableViewCell {
   @IBOutlet weak var milesNum: UILabel!
   @IBOutlet weak var addressT: UILabel!
   
+  var loc : String!
+  
   var restaurant: Business! {
     didSet {
+      loc = restaurant.address
       resName.text = restaurant.name
       addressT.text = restaurant.address
       resFType.text = restaurant.categories

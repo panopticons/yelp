@@ -37,16 +37,16 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
     
         nav.titleView = s.searchBar
     
-    Business.searchWithTerm(term: "", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
+    Business.searchWithTerm(term: "Thai", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
             self.filtered = businesses
-          self.table.reloadData()
-            if let businesses = businesses {
+            self.table.reloadData()
+            /*if let businesses = businesses {
                 /*for business in businesses {
                     print(business.name!)
                     print(business.address!)
                 }*/
-            }
+            }*/
             
             }
         )
@@ -117,11 +117,11 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
   func loadMoreData() {
     offset += 5
     
-    Business.searchWithTerm(term: "", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
+    Business.searchWithTerm(term: "Thai", offset: offset, completion: { (businesses: [Business]?, error: Error?) -> Void in
 
       self.isMoreDataLoading = false
       self.businesses.append(contentsOf: businesses!)
-      //self.filtered.append(contentsOf: businesses!)
+      self.filtered.append(contentsOf: businesses!)
       
       self.table.reloadData()
     }
@@ -145,11 +145,24 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let cell = sender as! BusinessViewCell
-    let indexPath = table.indexPath(for: cell)
+    //let cell = sender as! BusinessViewCell
+    //let indexPath = table.indexPath(for: cell)
     //let business = filtered![indexPath!.item]
     
-    let dViewController = segue.destination as! DetailsViewController
+    let dest = segue.destination as! DetailsViewController
+    let text = (sender as! BusinessViewCell).resName
+    let address = (sender as! BusinessViewCell).addressT
+    let rev = (sender as! BusinessViewCell).busPic
+    let revr = (sender as! BusinessViewCell).busRate
+    let revl = (sender as! BusinessViewCell).revNum
+    let type = (sender as! BusinessViewCell).resFType
     
+    dest.navig.title = text?.text
+    dest.address = address?.text
+    dest.pic = rev
+    dest.resPic = rev?.image
+    dest.revPic = revr
+    dest.reviewLabel = revl?.text
+    dest.typeLab = type?.text
   }
 }
